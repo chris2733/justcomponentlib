@@ -1,19 +1,19 @@
 <template>
 	<nav class="sidebar">
-		<ul v-for="(item, key) in ComponentList" :key="item">
+		<ul v-for="(item, key) in componentList" :key="item">
 			<li>
 				{{ key }}
 			</li>
 			<ul v-for="(subitem, subkey) in item" :key="subitem">
-				<li v-if="typeof subkey === 'string'">
+				<li v-if="typeof subitem === 'object' && subitem !== null">
 					{{ subkey }}
 				</li>
 				<ul v-for="(subsubitem, subsubkey) in subitem" :key="subsubitem">
-					<li v-if="typeof subsubkey === 'string'">
+					<li v-if="typeof subsubitem === 'object' && subsubitem !== null">
 						{{ subsubkey }}
 					</li>
-					<ul v-for="(subsubsubitem, subsubsubkey) in subitem" :key="subsubsubitem">
-						<li v-if="typeof subsubsubkey === 'string'">
+					<ul v-for="(subsubsubitem, subsubsubkey) in subsubitem" :key="subsubsubitem">
+						<li v-if="typeof subsubsubitem === 'object' && subsubsubitem !== null">
 							{{ subsubsubkey }}
 						</li>
 					</ul>
@@ -26,27 +26,9 @@
 <script>
 export default {
 	name: "sidebar",
+	props: ["componentList"],
 	data() {
 		return {
-			ComponentList: {
-				Navigation: {
-					Types: {
-						Menus: {
-							Megamenu: 'https://codepen.io/Chris2733/pen/RwwZpdL'
-						},
-						Scrollbars: {
-							Scrollbar: 'https://codepen.io/Chris2733/pen/RwwZpdL'
-						}
-					},
-				},
-				Clipboard: {
-					'clipboardjs': 'https://codepen.io/Chris2733/pen/QWjqvjP',
-					'Round button': 'https://codepen.io/jonsp/pen/GRJKrYv'
-				},
-				Javascript: {
-					assorted: 'https://codepen.io/jonsp/pen/PoqYVZv'
-				}
-			},
 		};
 	},
 	computed: {
