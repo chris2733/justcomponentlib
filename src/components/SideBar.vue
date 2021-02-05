@@ -31,13 +31,13 @@ export default {
 		return {
 		};
 	},
-	computed: {
-	},
 	methods: {
 		menuItemClick(key) {
 			event.stopPropagation();
-			console.log(event.target);
-			this.$emit("update-current-category", key);
+			// if item has sub items
+			if (!event.target.querySelector('li')) {
+				this.$emit("update-current-category", key);
+			}
 		}
 	},
 };
