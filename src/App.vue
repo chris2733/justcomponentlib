@@ -1,6 +1,5 @@
 <template>
 	<div class="container-fluid p-0">
-	{{ currentMenuItem }}
 		<div class="row no-gutters">
 			<div class="col-12">
 				<TopBar />
@@ -9,7 +8,7 @@
 				<SideBar @update-current-category="updateCurrentCategory" :component-list="ComponentList" />
 			</div>
 			<div class="col-md-8 col-lg-9">
-				<ViewPanel :component-list="ComponentList" />
+				<ViewPanel :current-category="currentCategory" :component-list="ComponentList" />
 			</div>
 		</div>
 	</div>
@@ -29,7 +28,7 @@ export default {
 	},
 	data() {
 		return {
-			currentMenuItem: "none",
+			currentCategory: null,
 			ComponentList: {
 				Navigation: {
 					Types: {
@@ -53,7 +52,7 @@ export default {
 	},
 	methods: {
 		updateCurrentCategory(key) {
-			this.currentMenuItem = key;
+			this.currentCategory = key;
 		},
 	},
 };

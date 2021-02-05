@@ -2,7 +2,7 @@
 {{ parent }}
     <div class="iframewrapper">
         <h3>{{ title }}</h3>
-        <iframe height="500" style="width: 100%;" scrolling="no" data-default-tab="result" preview="true" :src="embedLink" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+        <iframe height="100" style="width: 100%;" scrolling="no" data-default-tab="result" preview="true" :src="embedLink" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
         </iframe>
     </div>
 </template>
