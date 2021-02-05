@@ -7,17 +7,17 @@
 			<ul v-for="(subitem, subkey) in item" :key="subitem">
 				<li v-if="typeof subitem === 'object' && subitem !== null">
 					{{ subkey }}
-				</li>
-				<ul v-for="(subsubitem, subsubkey) in subitem" :key="subsubitem">
-					<li v-if="typeof subsubitem === 'object' && subsubitem !== null">
-						{{ subsubkey }}
-					</li>
-					<ul v-for="(subsubsubitem, subsubsubkey) in subsubitem" :key="subsubsubitem">
-						<li v-if="typeof subsubsubitem === 'object' && subsubsubitem !== null">
-							{{ subsubsubkey }}
+					<ul v-for="(subsubitem, subsubkey) in subitem" :key="subsubitem">
+						<li v-if="typeof subsubitem === 'object' && subsubitem !== null">
+							{{ subsubkey }}
+							<ul v-for="(subsubsubitem, subsubsubkey) in subsubitem" :key="subsubsubitem">
+								<li v-if="typeof subsubsubitem === 'object' && subsubsubitem !== null">
+									{{ subsubsubkey }}
+								</li>
+							</ul>
 						</li>
 					</ul>
-				</ul>
+				</li>
 			</ul>
 		</ul>
 	</nav>
