@@ -1,11 +1,12 @@
 <template>
 	<div class="container-fluid p-0">
+	{{ currentMenuItem }}
 		<div class="row no-gutters">
 			<div class="col-12">
 				<TopBar />
 			</div>
 			<div class="col-md-4 col-lg-3">
-				<SideBar :component-list="ComponentList" />
+				<SideBar @update-current-category="updateCurrentCategory" :component-list="ComponentList" />
 			</div>
 			<div class="col-md-8 col-lg-9">
 				<ViewPanel :component-list="ComponentList" />
@@ -28,6 +29,7 @@ export default {
 	},
 	data() {
 		return {
+			currentMenuItem: "none",
 			ComponentList: {
 				Navigation: {
 					Types: {
@@ -35,7 +37,7 @@ export default {
 							Megamenu: 'https://codepen.io/Chris2733/pen/RwwZpdL'
 						},
 						Scrollbars: {
-							Scrollbar: 'https://codepen.io/Chris2733/pen/RwwZpdL'
+							Scrollbar: 'https://codepen.io/Chris2733/pen/rNONWKR'
 						}
 					},
 				},
@@ -48,7 +50,12 @@ export default {
 				}
 			},
 		}
-	}
+	},
+	methods: {
+		updateCurrentCategory(key) {
+			this.currentMenuItem = key;
+		},
+	},
 };
 </script>
 

@@ -1,17 +1,17 @@
 <template>
 	<nav class="sidebar">
-		<ul v-for="(item, key) in componentList" :key="item">
+		<ul v-for="(item, key) in componentList" :key="item" @click="menuItemClick(key)">
 			<li>
 				{{ key }}
 			</li>
 			<ul v-for="(subitem, subkey) in item" :key="subitem">
-				<li v-if="typeof subitem === 'object' && subitem !== null">
+				<li v-if="typeof subitem === 'object' && subitem !== null" @click="menuItemClick(subkey)">
 					{{ subkey }}
 					<ul v-for="(subsubitem, subsubkey) in subitem" :key="subsubitem">
-						<li v-if="typeof subsubitem === 'object' && subsubitem !== null">
+						<li v-if="typeof subsubitem === 'object' && subsubitem !== null" @click="menuItemClick(subsubkey)">
 							{{ subsubkey }}
 							<ul v-for="(subsubsubitem, subsubsubkey) in subsubitem" :key="subsubsubitem">
-								<li v-if="typeof subsubsubitem === 'object' && subsubsubitem !== null">
+								<li v-if="typeof subsubsubitem === 'object' && subsubsubitem !== null" @click="menuItemClick(subsubsubkey)">
 									{{ subsubsubkey }}
 								</li>
 							</ul>
@@ -32,6 +32,12 @@ export default {
 		};
 	},
 	computed: {
+	},
+	methods: {
+		menuItemClick(key) {
+			event.stopPropagation();
+			this.$emit("update-current-category", key);
+		}
 	},
 };
 </script>
