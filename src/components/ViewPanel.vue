@@ -1,27 +1,15 @@
 <template>
 	<div class="panel">
-		<h2 v-if="!currentCategory">Select Category</h2>
-		<ul v-for="(item, key) in componentList" :key="item">
-			<ul v-for="(subitem, subkey) in item" :key="subitem">
-				<li v-if="typeof subitem !== 'object' && subitem !== null">
-					<codepenIframe :parent="key" :title="subkey" :link="subitem" v-if="key == currentCategory"/>
-				</li>
-				<li v-if="typeof subitem === 'object' && subitem !== null">
-					<ul v-for="(subsubitem, subsubkey) in subitem" :key="subsubitem">
-						<li v-if="typeof subsubitem !== 'object' && subsubitem !== null">
-							<codepenIframe :parent="subkey" :title="subsubkey" :link="subsubitem" v-if="subkey == currentCategory"/>
-						</li>
-						<li v-if="typeof subsubitem === 'object' && subsubitem !== null">
-							<ul v-for="(subsubsubitem, subsubsubkey) in subsubitem" :key="subsubsubitem">
-								<li v-if="typeof subsubsubitem !== 'object' && subsubsubitem !== null">
-									<codepenIframe :parent="subsubkey" :title="subsubsubkey" :link="subsubsubitem" v-if="subsubkey == currentCategory"/>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		</ul>
+		<section class="text-center py-5" v-if="currentCategory == null">
+			<h2>Select Category</h2>
+		</section>
+		<div v-for="item in componentList" :key="item">
+			<div v-for="subitem in item" :key="subitem">
+				<div v-for="(linkItem, key) in subitem.content" :key="key">
+					<codepenIframe :parent="subitem.group" :title="key" :link="linkItem" v-if="subitem.group == currentCategory"/>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -45,8 +33,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.topbar {
-	background: #404040;
-	color: #fff;
-}
 </style>

@@ -5,10 +5,10 @@
 				<TopBar />
 			</div>
 			<div class="col-md-4 col-lg-3">
-				<SideBar @update-current-category="updateCurrentCategory" :component-list="ComponentList" />
+				<SideBar @update-current-category="updateCurrentCategory" :component-list="componentList" />
 			</div>
 			<div class="col-md-8 col-lg-9">
-				<ViewPanel :current-category="currentCategory" :component-list="ComponentList" />
+				<ViewPanel :current-category="currentCategory" :component-list="componentList" />
 			</div>
 		</div>
 	</div>
@@ -29,25 +29,41 @@ export default {
 	data() {
 		return {
 			currentCategory: null,
-			ComponentList: {
-				Navigation: {
-					Types: {
-						Menus: {
+			componentList: {
+				Navigation: [
+					{
+						group: 'Menus',
+						content: {
 							Megamenu: 'https://codepen.io/Chris2733/pen/RwwZpdL'
 						},
-						Scrollbars: {
-							Scrollbar: 'https://codepen.io/Chris2733/pen/rNONWKR'
-						}
 					},
-				},
-				Clipboard: {
-					'clipboardjs': 'https://codepen.io/Chris2733/pen/QWjqvjP',
-					'Round button': 'https://codepen.io/jonsp/pen/GRJKrYv'
-				},
-				Javascript: {
-					assorted: 'https://codepen.io/jonsp/pen/PoqYVZv'
-				}
-			},
+					{
+						group: 'Scrollbars',
+						content: {
+							Scrollbar: 'https://codepen.io/Chris2733/pen/rNONWKR',
+							'Slider scroll': 'https://codepen.io/spindogs/pen/YzWOyyP'
+						},
+					},
+				],
+				Media: [
+					{	
+						group: 'Video',
+						content: {
+							Video: 'https://codepen.io/Chris2733/pen/xxbKwMm'
+						},
+					}
+				],
+				Javascript: [
+					{	
+						group: 'Assorted',
+						content: {
+							'clipboardjs': 'https://codepen.io/Chris2733/pen/QWjqvjP',
+							'Round button': 'https://codepen.io/jonsp/pen/GRJKrYv',
+							'Mouse follow': 'https://codepen.io/spindogs/pen/yLJxNrp'
+						},
+					}
+				]
+			}
 		}
 	},
 	methods: {

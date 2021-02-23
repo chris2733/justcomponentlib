@@ -1,21 +1,11 @@
 <template>
-	<nav class="sidebar">
+	<nav aria-label="Primary" class="sidebar">
 		<ul v-for="(item, key) in componentList" :key="item">
-			<li v-if="typeof item === 'object' && item !== null" @click="menuItemClick(key)">
+			<li>
 				{{ key }}
-				<ul v-for="(subitem, subkey) in item" :key="subitem">
-					<li v-if="typeof subitem === 'object' && subitem !== null" @click="menuItemClick(subkey)">
-						{{ subkey }}
-						<ul v-for="(subsubitem, subsubkey) in subitem" :key="subsubitem">
-							<li v-if="typeof subsubitem === 'object' && subsubitem !== null" @click="menuItemClick(subsubkey)">
-								{{ subsubkey }}
-								<ul v-for="(subsubsubitem, subsubsubkey) in subsubitem" :key="subsubsubitem">
-									<li v-if="typeof subsubsubitem === 'object' && subsubsubitem !== null" @click="menuItemClick(subsubsubkey)">
-										{{ subsubsubkey }}
-									</li>
-								</ul>
-							</li>
-						</ul>
+				<ul>
+					<li v-for="(subitem, key) in item" :key="key" @click="menuItemClick(subitem.group)">
+						{{subitem.group}}
 					</li>
 				</ul>
 			</li>
@@ -31,14 +21,13 @@ export default {
 		return {
 		};
 	},
+	computed: {
+	},
 	methods: {
 		menuItemClick(key) {
 			event.stopPropagation();
-			// if item has sub items
-			if (!event.target.querySelector('li')) {
-				this.$emit("update-current-category", key);
-			}
-		}
+			this.$emit("update-current-category", key);
+		},
 	},
 };
 </script>
@@ -47,5 +36,21 @@ export default {
 <style scoped lang="scss">
 .sidebar {
 	background: #6b6b6b;
+	color: #fff;
+	padding: 25px 0;
+	height: 100%;
+	min-height: 100vh;
+	ul {
+		padding: 0 0 0 16px;
+		li {
+			list-style-type: none;
+			ul {
+				margin: 10px 0 0 0;
+			}
+		}
+	}
+	> ul {
+		padding: 0 0 0 40px;
+	}
 }
 </style>
